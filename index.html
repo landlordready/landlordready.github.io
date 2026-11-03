@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Landlord Register Checker – your PRS Database deadline in 60 seconds</title>
+<meta name="description" content="Free checker for landlords in England: find your PRS Database registration deadline by postcode, the £65 fee, and which certificates you still need. Independent tool, not affiliated with the UK Government.">
+<meta property="og:title" content="When must you join the new landlord register?">
+<meta property="og:description" content="Enter your postcode. Get your PRS Database deadline, fee estimate and a personal document checklist. Free, 60 seconds.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://landlordready.github.io/">
+<meta property="og:url" content="https://landlordready.github.io/">
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#16202a;--muted:#5b6672;--line:#e3e0d8;--accent:#0f6b5c;--accent-ink:#fff;--warn:#b54708;--warn-bg:#fff4e5;--bad:#b42318;--bad-bg:#fdecea;--ok:#067647;--ok-bg:#e7f6ec}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+header .brand{font-weight:700;letter-spacing:-.01em;color:var(--accent)}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.15;margin:12px 0 10px;letter-spacing:-.02em}
+.lead{color:var(--muted);font-size:18px;margin:0 0 18px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 26px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.fact b{display:block;font-size:22px}
+.fact span{color:var(--muted);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:0 0 18px}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=number],input[type=email],select{width:100%;font:inherit;padding:12px;border:1px solid #cfcac0;border-radius:10px;background:#fff;color:var(--ink)}
+.q{border-top:1px solid var(--line);padding:12px 0}
+.q:first-of-type{border-top:0}
+.q p{margin:0 0 8px;font-weight:600}
+.q small{display:block;color:var(--muted);font-weight:400;margin-top:2px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{margin:0;font-weight:500;display:inline-flex;align-items:center;gap:6px;border:1px solid #cfcac0;border-radius:999px;padding:7px 14px;cursor:pointer;background:#fff}
+.opts input{accent-color:var(--accent)}
+.opts label:has(input:checked){border-color:var(--accent);background:#e8f3f0}
+.btn{display:inline-block;font:inherit;font-weight:700;border:0;border-radius:12px;padding:14px 20px;background:var(--accent);color:var(--accent-ink);cursor:pointer;text-decoration:none;text-align:center}
+.btn.secondary{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+.btn.block{width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1 1 200px}
+.err{color:var(--bad);font-size:14px;margin-top:6px;display:none}
+#result{display:none}
+.deadline{border-radius:14px;padding:18px;background:#e8f3f0;border:1px solid #bfe0d8;margin-bottom:14px}
+.deadline .big{font-size:clamp(24px,5vw,32px);font-weight:800;line-height:1.2}
+.deadline .sub{color:var(--muted)}
+.pill{display:inline-block;font-size:13px;font-weight:700;border-radius:999px;padding:3px 10px}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}.pill.warn{background:var(--warn-bg);color:var(--warn)}.pill.bad{background:var(--bad-bg);color:var(--bad)}
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;background:#fff}
+ul.check li b{display:block}
+ul.check li.bad{border-left:5px solid var(--bad)}ul.check li.warn{border-left:5px solid var(--warn)}ul.check li.ok{border-left:5px solid var(--ok)}
+ul.check li span{color:var(--muted);font-size:14px}
+.score{font-weight:800;font-size:18px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+tr.me td{background:#e8f3f0;font-weight:700}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+footer{color:var(--muted);font-size:13px;margin-top:30px}
+details{margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+@media (max-width:520px){.facts{grid-template-columns:1fr}}
+@media print{.noprint{display:none!important}body{background:#fff}.card{border:0;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="noprint"><span class="brand">LandlordReady</span> <span class="muted small">· independent checker for landlords in England</span></header>
+
+<section class="noprint">
+<h1>When must you join the new landlord register?</h1>
+<p class="lead">Every private landlord in England must register each rented home on the new PRS Database. Deadlines go region by region from December 2026. Enter your postcode and get your date and a personal document checklist in 60 seconds.</p>
+<div class="facts">
+<div class="fact"><b>£65</b><span>per property, per year</span></div>
+<div class="fact"><b>up to £7,000</b><span>civil penalty for letting while unregistered</span></div>
+<div class="fact"><b>77%</b><span>of landlords don't know about it yet*</span></div>
+</div>
+</section>
+
+<form id="f" class="card noprint" novalidate>
+<label for="pc">Rental property postcode</label>
+<input id="pc" type="text" autocomplete="postal-code" placeholder="e.g. B1 1AA" maxlength="9">
+<div class="err" id="pcErr">Please enter a valid UK postcode.</div>
+
+<label for="n">How many homes do you rent out in England?</label>
+<input id="n" type="number" min="1" max="500" value="1" inputmode="numeric">
+
+<div style="margin-top:18px">
+<div class="q" data-k="gas"><p>Is there a gas supply at the property?</p><div class="opts"><label><input type="radio" name="gas" value="yes">Yes</label><label><input type="radio" name="gas" value="no">No</label></div></div>
+<div class="q" data-k="gsr" id="qGsr"><p>Do you have a Gas Safety Record issued in the last 12 months?<small>Annual check by a Gas Safe registered engineer.</small></p><div class="opts"><label><input type="radio" name="gsr" value="yes">Yes</label><label><input type="radio" name="gsr" value="no">No</label><label><input type="radio" name="gsr" value="unsure">Not sure</label></div></div>
+<div class="q" data-k="eicr"><p>Do you have a valid EICR (electrical report) from the last 5 years?</p><div class="opts"><label><input type="radio" name="eicr" value="yes">Yes</label><label><input type="radio" name="eicr" value="no">No</label><label><input type="radio" name="eicr" value="unsure">Not sure</label></div></div>
+<div class="q" data-k="epc"><p>Is there a valid EPC (under 10 years old) rated E or better?</p><div class="opts"><label><input type="radio" name="epc" value="yes">Yes</label><label><input type="radio" name="epc" value="low">It's F or G</label><label><input type="radio" name="epc" value="no">No / expired</label><label><input type="radio" name="epc" value="unsure">Not sure</label></div></div>
+<div class="q" data-k="dep"><p>Is the tenant's deposit protected in a government-approved scheme?</p><div class="opts"><label><input type="radio" name="dep" value="yes">Yes</label><label><input type="radio" name="dep" value="no">No</label><label><input type="radio" name="dep" value="na">No deposit taken</label></div></div>
+<div class="q" data-k="info"><p>Did you give your tenants the government Information Sheet (or written terms)?<small>Required for existing tenancies by 31 May 2026.</small></p><div class="opts"><label><input type="radio" name="info" value="yes">Yes</label><label><input type="radio" name="info" value="no">No</label><label><input type="radio" name="info" value="unsure">Not sure</label></div></div>
+<div class="q" data-k="hmo"><p>Is it an HMO or in a selective licensing area?</p><div class="opts"><label><input type="radio" name="hmo" value="yes">Yes, licensed</label><label><input type="radio" name="hmo" value="nolic">Yes, no licence yet</label><label><input type="radio" name="hmo" value="no">No</label><label><input type="radio" name="hmo" value="unsure">Not sure</label></div></div>
+</div>
+<div class="err" id="qErr">Please answer every question so the checklist is accurate.</div>
+<p style="margin-top:18px"><button class="btn block" type="submit">Show my deadline and checklist</button></p>
+<p class="small muted" style="margin:0">Nothing you enter leaves your browser, apart from the postcode lookup.</p>
+</form>
+
+<section id="result">
+<div class="card">
+<div class="deadline">
+<div class="sub" id="rRegion"></div>
+<div class="big" id="rDeadline"></div>
+<div class="sub" id="rCount"></div>
+</div>
+<p id="rFee"></p>
+<p class="score" id="rScore"></p>
+<ul class="check" id="rList"></ul>
+<div class="row noprint" style="margin-top:14px">
+<button class="btn secondary" type="button" id="ics">Add deadline to my calendar</button>
+<button class="btn secondary" type="button" onclick="window.print()">Print / save as PDF</button>
+</div>
+</div>
+
+<div class="card noprint" id="pack">
+<h2 style="margin-top:0">Get registration-ready in one evening</h2>
+<p>The <b>Registration Ready Pack</b> has everything you need to fill in the PRS Database form in one go:</p>
+<ul>
+<li>Field-by-field worksheet with every question the register asks</li>
+<li>Document folder template: gas, EICR, EPC, deposit, licences</li>
+<li>Certificate expiry tracker with calendar reminders</li>
+<li>Plain-English summary of the Renters' Rights Act duties</li>
+</ul>
+<p><b>£19</b> <span class="muted">one-off</span></p>
+<a class="btn block" id="buy" href="#">Get the pack</a>
+<p class="small muted" id="buyNote" style="display:none">The pack launches soon. Leave your email to get it first at the early price.</p>
+<form id="lead" style="display:none">
+<label for="em">Email</label>
+<input id="em" type="email" placeholder="you@example.com" required>
+<p style="margin-top:12px"><button class="btn block" type="submit">Notify me + send my checklist</button></p>
+<p class="small muted">One email when the pack is ready, plus a reminder 30 days before your deadline. Unsubscribe anytime.</p>
+</form>
+<p id="thanks" style="display:none;font-weight:700;color:var(--ok)">Thanks! You're on the list.</p>
+</div>
+
+<div class="card noprint">
+<h2 style="margin-top:0">All regional dates</h2>
+<table id="tbl"><thead><tr><th>Region</th><th>Register opens</th><th>Deadline</th></tr></thead><tbody></tbody></table>
+<p class="small muted">Deadline is the end of the 3-month window after the regulations start in your region. You can register early. The date depends on where the property is, not where you live.</p>
+</div>
+<p class="noprint"><button class="btn secondary block" type="button" id="again">Check another property</button></p>
+</section>
+
+<section class="card noprint">
+<h2 style="margin-top:0">Questions landlords ask</h2>
+<details><summary>Who has to register?</summary><p>Private landlords in England with assured or regulated tenancies, for each rented home. Letting agents can help, but the duty is the landlord's.</p></details>
+<details><summary>What happens if I don't?</summary><p>Councils can issue civil penalties of up to £7,000, rising to £40,000 for repeated or false entries. Unregistered landlords also face limits on possession grounds and possible rent repayment orders of up to 24 months.</p></details>
+<details><summary>What will the register ask for?</summary><p>Your contact details; the property address, type and bedrooms; occupants and any HMO or licence numbers; rent and included utilities; gas safety record date, EICR expiry and EPC details.</p></details>
+<details><summary>Is this the official service?</summary><p>No. LandlordReady is an independent tool. Register on the official GOV.UK service. Dates and fees here are based on published guidance and may change, so always check GOV.UK.</p></details>
+</section>
+
+<footer>
+<p>*Survey by August, reported by The Negotiator, Oct 2026. Dates and fee from published local-authority guidance (Nov 2026).</p>
+<p>LandlordReady is not affiliated with the UK Government and does not give legal advice. Check official guidance on GOV.UK before acting.</p>
+</footer>
+</div>
+
+<script>
+// ===== Settings: fill these in to go live =====
+var PAY_LINK = "";        // Lemon Squeezy / Gumroad checkout URL for the £19 pack. Empty = waitlist mode.
+var FORM_ENDPOINT = "";   // Formspree-style POST endpoint for emails. Empty = opens the visitor's mail app.
+var FALLBACK_EMAIL = "technorb02@gmail.com";
+// ==============================================
+
+var REGIONS = [
+ {name:"West Midlands", opens:"2026-12-15", deadline:"2027-03-14"},
+ {name:"East of England", opens:"2027-01-15", deadline:"2027-04-14"},
+ {name:"East Midlands", opens:"2027-02-15", deadline:"2027-05-14"},
+ {name:"South East", opens:"2027-03-15", deadline:"2027-06-14"},
+ {name:"Yorkshire and The Humber", opens:"2027-04-15", deadline:"2027-07-14"},
+ {name:"North West", opens:"2027-05-15", deadline:"2027-08-14"},
+ {name:"North East", opens:"2027-06-15", deadline:"2027-09-14"},
+ {name:"London", opens:"2027-07-15", deadline:"2027-10-14"},
+ {name:"South West", opens:"2027-08-15", deadline:"2027-11-14"}
+];
+// Approximate postcode-area fallback, used if the live lookup is unavailable.
+var AREA = {};
+function map(list, r){list.split(" ").forEach(function(a){AREA[a]=r})}
+map("E EC N NW SE SW W WC BR CR DA EN HA IG KT RM SM TW UB","London");
+map("BN CT GU ME MK OX PO RG RH SL SO TN HP","South East");
+map("AL CB CM CO IP LU NR PE SG SS WD","East of England");
+map("BA BH BS DT EX GL PL SN SP TA TQ TR","South West");
+map("B CV DY HR ST TF WR WS WV SY","West Midlands");
+map("DE LE LN NG NN","East Midlands");
+map("BD DN HD HG HU HX LS S WF YO","Yorkshire and The Humber");
+map("BB BL CA CH CW FY L LA M OL PR SK WA WN","North West");
+map("DH DL NE SR TS","North East");
+map("CF LD LL NP SA","Wales");
+map("AB DD DG EH FK G HS IV KA KW KY ML PA PH TD ZE","Scotland");
+map("BT","Northern Ireland");
+
+var $ = function(id){return document.getElementById(id)};
+var current = null;
+
+function normPc(v){return v.toUpperCase().replace(/[^A-Z0-9]/g,"")}
+function validPc(p){return /^[A-Z]{1,2}[0-9][A-Z0-9]?[0-9][A-Z]{2}$/.test(p)}
+function areaOf(p){var m=p.match(/^[A-Z]{1,2}/);return m?m[0]:""}
+function fmt(d){return new Date(d+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
+function daysTo(d){return Math.ceil((new Date(d+"T23:59:59")-new Date())/864e5)}
+function findRegion(name){
+  if(!name) return null;
+  var n=name.toLowerCase();
+  for(var i=0;i<REGIONS.length;i++){if(REGIONS[i].name.toLowerCase()===n) return REGIONS[i]}
+  return null;
+}
+function lookup(p){
+  var fallback = AREA[areaOf(p)] || null;
+  if(!window.fetch) return Promise.resolve(fallback);
+  var ctl = window.AbortController ? new AbortController() : null;
+  var t = setTimeout(function(){ if(ctl) ctl.abort(); }, 4000);
+  return fetch("https://api.postcodes.io/postcodes/"+encodeURIComponent(p), ctl?{signal:ctl.signal}:{})
+    .then(function(r){clearTimeout(t);return r.ok?r.json():null})
+    .then(function(j){
+      if(!j||!j.result) return fallback;
+      if(j.result.country && j.result.country!=="England") return j.result.country;
+      return j.result.region || fallback;
+    })
+    .catch(function(){clearTimeout(t);return fallback});
+}
+
+function val(name){var el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:null}
+
+$("f").addEventListener("change",function(){
+  $("qGsr").style.display = val("gas")==="no" ? "none" : "";
+});
+
+$("f").addEventListener("submit",function(e){
+  e.preventDefault();
+  var p = normPc($("pc").value);
+  $("pcErr").style.display = validPc(p)?"none":"block";
+  var keys=["gas","eicr","epc","dep","info","hmo"]; if(val("gas")!=="no") keys.push("gsr");
+  var missing = keys.some(function(k){return !val(k)});
+  $("qErr").style.display = missing?"block":"none";
+  if(!validPc(p)||missing) return;
+  var btn=this.querySelector("button[type=submit]"); btn.disabled=true; btn.textContent="Checking…";
+  lookup(p).then(function(regionName){
+    btn.disabled=false; btn.textContent="Show my deadline and checklist";
+    render(p, regionName);
+  });
+});
+
+function item(cls,title,text){return {cls:cls,title:title,text:text}}
+
+function render(p, regionName){
+  var reg = findRegion(regionName);
+  var n = Math.max(1, parseInt($("n").value,10)||1);
+  if(reg){
+    var d = daysTo(reg.deadline), o = daysTo(reg.opens);
+    $("rRegion").textContent = "Property in "+reg.name+" ("+p.replace(/(\w{3})$/," $1")+")";
+    $("rDeadline").textContent = "Register by "+fmt(reg.deadline);
+    $("rCount").textContent = (o>0 ? "Registration opens in your region on "+fmt(reg.opens)+". " : "Registration is open in your region. ")+(d>0 ? d+" days left to the deadline." : "The deadline has passed. Register now.");
+    current = reg;
+  } else {
+    var place = regionName || "outside England";
+    $("rRegion").textContent = "Postcode "+p;
+    $("rDeadline").textContent = "This register covers England only";
+    $("rCount").textContent = "Your property looks to be in "+place+", which has its own landlord registration rules. The checklist below still shows what most landlords need.";
+    current = null;
+  }
+  $("ics").style.display = reg ? "" : "none";
+  $("rFee").innerHTML = reg ? "Estimated fee: <b>£"+(65*n).toLocaleString("en-GB")+" a year</b> for "+n+" "+(n>1?"properties":"property")+" (£65 each)." : "";
+
+  var L=[];
+  if(val("gas")==="yes"){
+    var g=val("gsr");
+    L.push(g==="yes"?item("ok","Gas Safety Record","You'll need its issue date for the register."):
+      item(g==="no"?"bad":"warn","Gas Safety Record","The register asks for a valid record and its date. Book a Gas Safe engineer; it's a yearly legal duty anyway."));
+  }
+  var e=val("eicr");
+  L.push(e==="yes"?item("ok","Electrical report (EICR)","Have the expiry date ready."):item(e==="no"?"bad":"warn","Electrical report (EICR)","Required every 5 years and the register asks for its expiry date. Book a qualified electrician."));
+  var c=val("epc");
+  L.push(c==="yes"?item("ok","EPC","Have the certificate reference ready."):
+    c==="low"?item("bad","EPC rated F or G","Homes rated F/G generally can't be let unless an exemption is registered. Check improvements or the exemptions register."):
+    item(c==="no"?"bad":"warn","EPC","You need a valid EPC to let. Look yours up on the GOV.UK EPC register or book an assessor."));
+  var dp=val("dep");
+  L.push(dp==="no"?item("bad","Deposit protection","Deposits must be protected within 30 days. Fix this before registering; it affects possession rights."):item("ok","Deposit","Nothing to add here."));
+  var inf=val("info");
+  L.push(inf==="yes"?item("ok","Tenant Information Sheet","Done."):item(inf==="no"?"bad":"warn","Tenant Information Sheet","Existing tenants should have had the government Information Sheet (or written terms) by 31 May 2026."));
+  var h=val("hmo");
+  if(h==="nolic") L.push(item("bad","HMO / selective licence","The register asks for licence numbers. Apply to your council for the licence."));
+  else if(h==="unsure") L.push(item("warn","HMO / selective licence","Check your council's website for licensing schemes. The register asks for any licence number."));
+  else if(h==="yes") L.push(item("ok","Licence","Have the licence number ready."));
+  L.push(item("warn","Tenancy details","Have ready: number of occupants and households, rent amount and frequency, and which bills are included."));
+
+  var bad=L.filter(function(x){return x.cls==="bad"}).length, warn=L.filter(function(x){return x.cls==="warn"}).length, ok=L.filter(function(x){return x.cls==="ok"}).length;
+  $("rScore").innerHTML = bad ? '<span class="pill bad">'+bad+' to fix</span> ' + (warn?'<span class="pill warn">'+warn+' to check</span> ':'') + '<span class="pill ok">'+ok+' ready</span>'
+    : (warn ? '<span class="pill warn">'+warn+' to check</span> <span class="pill ok">'+ok+' ready</span>' : '<span class="pill ok">You look ready to register</span>');
+  $("rList").innerHTML = L.map(function(x){return '<li class="'+x.cls+'"><b>'+x.title+'</b><span>'+x.text+'</span></li>'}).join("");
+
+  var tb=$("tbl").querySelector("tbody");
+  tb.innerHTML = REGIONS.map(function(r){return '<tr'+(reg&&r.name===reg.name?' class="me"':'')+'><td>'+r.name+'</td><td>'+fmt(r.opens)+'</td><td>'+fmt(r.deadline)+'</td></tr>'}).join("");
+
+  $("f").style.display="none"; $("result").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+  track("checked", reg?reg.name:"other");
+}
+
+$("again").addEventListener("click",function(){ $("result").style.display="none"; $("f").style.display="block"; $("pc").value=""; $("pc").focus(); });
+
+$("ics").addEventListener("click",function(){
+  if(!current) return;
+  var d=current.deadline.replace(/-/g,""), o=current.opens.replace(/-/g,"");
+  var stamp=new Date().toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
+  function ev(id,date,title,desc){return ["BEGIN:VEVENT","UID:"+id+"-"+date+"@landlordready","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+date,"SUMMARY:"+title,"DESCRIPTION:"+desc,"BEGIN:VALARM","TRIGGER:-P14D","ACTION:DISPLAY","DESCRIPTION:"+title,"END:VALARM","END:VEVENT"].join("\r\n")}
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//LandlordReady//EN",
+    ev("open",o,"PRS Database opens ("+current.name+")","You can now register your rental properties on GOV.UK."),
+    ev("deadline",d,"Deadline: register rental properties on the PRS Database","Last day to register in "+current.name+". Penalties up to £7,000."),
+    "END:VCALENDAR"].join("\r\n");
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
+  a.download="landlord-register-deadline.ics"; document.body.appendChild(a); a.click(); a.remove();
+  track("ics", current.name);
+});
+
+if(PAY_LINK){ $("buy").href=PAY_LINK; $("buy").target="_blank"; $("buy").rel="noopener"; }
+$("buy").addEventListener("click",function(e){
+  track("buy_click", current?current.name:"other");
+  if(PAY_LINK) return;
+  e.preventDefault(); $("buy").style.display="none"; $("buyNote").style.display="block"; $("lead").style.display="block"; $("em").focus();
+});
+
+$("lead").addEventListener("submit",function(e){
+  e.preventDefault();
+  var em=$("em").value.trim(); if(!/^\S+@\S+\.\S+$/.test(em)){ $("em").focus(); return; }
+  var region=current?current.name:"other", props=$("n").value;
+  track("lead", region);
+  var done=function(){ $("lead").style.display="none"; $("buyNote").style.display="none"; $("thanks").style.display="block"; };
+  if(FORM_ENDPOINT){
+    fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({email:em,region:region,properties:props,source:"landlord-register"})}).then(done,done);
+  } else {
+    location.href="mailto:"+FALLBACK_EMAIL+"?subject="+encodeURIComponent("Registration Ready Pack waitlist")+"&body="+encodeURIComponent("Please add me to the waitlist.\nEmail: "+em+"\nRegion: "+region+"\nProperties: "+props);
+    done();
+  }
+});
+
+function track(ev,label){ try{ if(window.gtag) gtag("event",ev,{event_label:label}); }catch(_){} }
+</script>
+</body>
+</html>
