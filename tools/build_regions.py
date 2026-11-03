@@ -72,7 +72,7 @@ def page(slug,name,opens,deadline,cities,idx):
 <h2>Questions landlords in {html.escape(name)} ask</h2>
 {faq_html}
 <p class="nav">{" · ".join(nav)}</p>
-<footer><p>Dates and fee are taken from published local-authority guidance (November 2026) and may change. LandlordReady is an independent tool, not affiliated with the UK Government, and does not give legal advice. Always check GOV.UK before acting.</p></footer>
+<footer><p>Dates and fee are taken from published local-authority guidance (November 2026) and may change. LandlordReady is an independent tool, not affiliated with the UK Government, and does not give legal advice. Always check GOV.UK before acting. Sources: <a href="https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap/implementing-the-renters-rights-act-2025-our-roadmap-for-reforming-the-private-rented-sector" rel="noopener" target="_blank">GOV.UK roadmap</a> · <a href="https://www.llcr.uk/articles/prs-database-what-landlords-need-to-register.html" rel="noopener" target="_blank">LLCR guide</a>. Last checked 3 November 2026. Found an error? <a href="mailto:technorb02@gmail.com?subject=LandlordReady%20error%20report">Tell us</a>.</p></footer>
 </div></body></html>"""
 
 def index_page():
@@ -88,7 +88,7 @@ def index_page():
 <p class="lead">The PRS Database opens region by region. Each region gets three months to register. Pick the region where your rented property is.</p>
 <table><thead><tr><th>Region</th><th>Opens</th><th>Deadline</th></tr></thead><tbody>{rows}</tbody></table>
 <p><a class="btn" href="../">Not sure of your region? Check by postcode</a></p>
-<footer><p>Dates from published local-authority guidance (November 2026); they may change. Independent tool, not affiliated with the UK Government. Check GOV.UK before acting.</p></footer>
+<footer><p>Dates from published local-authority guidance (November 2026); they may change. Independent tool, not affiliated with the UK Government. Check GOV.UK before acting. Sources: <a href="https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap/implementing-the-renters-rights-act-2025-our-roadmap-for-reforming-the-private-rented-sector" rel="noopener" target="_blank">GOV.UK roadmap</a> · <a href="https://www.llcr.uk/articles/prs-database-what-landlords-need-to-register.html" rel="noopener" target="_blank">LLCR guide</a>. Last checked 3 November 2026. Found an error? <a href="mailto:technorb02@gmail.com?subject=LandlordReady%20error%20report">Tell us</a>.</p></footer>
 </div></body></html>"""
 
 os.makedirs(os.path.join(ROOT,"register"),exist_ok=True)

@@ -56,6 +56,8 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
 tr.me td{background:#e8f3f0;font-weight:700}
 .muted{color:var(--muted)}
 .small{font-size:13px}
+a{color:var(--accent)}
+.trust{color:var(--muted);margin:-12px 0 22px}
 footer{color:var(--muted);font-size:13px;margin-top:30px}
 details{margin:8px 0}
 summary{cursor:pointer;font-weight:600}
@@ -71,10 +73,11 @@ summary{cursor:pointer;font-weight:600}
 <h1>When must you join the new landlord register?</h1>
 <p class="lead">Every private landlord in England must register each rented home on the new PRS Database. Deadlines go region by region from December 2026. Enter your postcode and get your date and a personal document checklist in 60 seconds.</p>
 <div class="facts">
-<div class="fact"><b>£65</b><span>per property, per year</span></div>
-<div class="fact"><b>up to £7,000</b><span>civil penalty for letting while unregistered</span></div>
-<div class="fact"><b>77%</b><span>of landlords don't know about it yet*</span></div>
+<div class="fact"><b>£65</b><span>per property, per year · <a href="https://www.llcr.uk/articles/prs-database-what-landlords-need-to-register.html" rel="noopener" target="_blank">source</a></span></div>
+<div class="fact"><b>up to £7,000</b><span>civil penalty for letting while unregistered · <a href="https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap/implementing-the-renters-rights-act-2025-our-roadmap-for-reforming-the-private-rented-sector" rel="noopener" target="_blank">GOV.UK</a></span></div>
+<div class="fact"><b>77%</b><span>of landlords don't know about it yet · <a href="https://thenegotiator.co.uk/news/regulation-law-news/most-landlords-unaware-of-new-database-and-ombudsman/" rel="noopener" target="_blank">source</a></span></div>
 </div>
+<p class="trust small">✓ Free, no sign-up &nbsp;·&nbsp; ✓ We don't store your answers; the postcode is only used to find your region &nbsp;·&nbsp; ✓ Checked against GOV.UK guidance on 3 November 2026</p>
 </section>
 
 <form id="f" class="card noprint" novalidate>
@@ -157,8 +160,15 @@ summary{cursor:pointer;font-weight:600}
 <p><a href="register/west-midlands/">West Midlands</a> · <a href="register/east-of-england/">East of England</a> · <a href="register/east-midlands/">East Midlands</a> · <a href="register/south-east/">South East</a> · <a href="register/yorkshire-and-the-humber/">Yorkshire and The Humber</a> · <a href="register/north-west/">North West</a> · <a href="register/north-east/">North East</a> · <a href="register/london/">London</a> · <a href="register/south-west/">South West</a></p>
 </section>
 
+<section class="card noprint" id="about">
+<h2 style="margin-top:0">Who runs this, and why is it free?</h2>
+<p>LandlordReady is a small independent project. We are not the government, a letting agent or a law firm. We built this checker because most landlords have not heard about the PRS Database yet, and the official guidance is spread across several documents.</p>
+<p>The checker is free and always will be. Later we plan to offer an optional paid pack with templates and reminders for landlords who want everything in one place. You never need it to register.</p>
+<p>Every date and figure here links to its source. If you spot something wrong or out of date, please <a id="reportLink" href="#">tell us</a> and we will fix it.</p>
+</section>
+
 <footer>
-<p>*Survey by August, reported by The Negotiator, Oct 2026. Dates and fee from published local-authority guidance (Nov 2026).</p>
+<p>Sources: <a href="https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap/implementing-the-renters-rights-act-2025-our-roadmap-for-reforming-the-private-rented-sector" rel="noopener" target="_blank">GOV.UK Renters' Rights Act roadmap</a> · <a href="https://www.llcr.uk/articles/prs-database-what-landlords-need-to-register.html" rel="noopener" target="_blank">LLCR guide to the PRS Database</a> · <a href="https://thenegotiator.co.uk/news/regulation-law-news/most-landlords-unaware-of-new-database-and-ombudsman/" rel="noopener" target="_blank">The Negotiator survey report, Oct 2026</a>. Last checked 3 November 2026.</p>
 <p>LandlordReady is not affiliated with the UK Government and does not give legal advice. Check official guidance on GOV.UK before acting.</p>
 </footer>
 </div>
@@ -168,6 +178,7 @@ summary{cursor:pointer;font-weight:600}
 var PAY_LINK = "";        // Lemon Squeezy / Gumroad checkout URL for the £19 pack. Empty = waitlist mode.
 var FORM_ENDPOINT = "";   // Formspree-style POST endpoint for emails. Empty = opens the visitor's mail app.
 var FALLBACK_EMAIL = "technorb02@gmail.com";
+document.addEventListener("DOMContentLoaded",function(){var a=document.getElementById("reportLink");if(a)a.href="mailto:"+FALLBACK_EMAIL+"?subject="+encodeURIComponent("LandlordReady: error report");});
 // ==============================================
 
 var REGIONS = [
