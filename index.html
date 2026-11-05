@@ -345,7 +345,7 @@ $("lead").addEventListener("submit",function(e){
   track("lead", region);
   var done=function(){ $("lead").style.display="none"; $("buyNote").style.display="none"; $("thanks").style.display="block"; };
   if(FORM_ENDPOINT){
-    fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({email:em,region:region,properties:props,source:"landlord-register"})}).then(done,done);
+    fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({email:em,region:region,properties:props,source:"landlord-register"})}).then(function(r){ if(r.ok){done();} else { r.text().then(function(t){ alert("Sorry, that didn't go through. Please try again or email "+FALLBACK_EMAIL); console.error("Formspree",r.status,t); }); } }, function(){ alert("Network error. Please try again or email "+FALLBACK_EMAIL); });
   } else {
     location.href="mailto:"+FALLBACK_EMAIL+"?subject="+encodeURIComponent("Registration Ready Pack waitlist")+"&body="+encodeURIComponent("Please add me to the waitlist.\nEmail: "+em+"\nRegion: "+region+"\nProperties: "+props);
     done();
